@@ -33,6 +33,16 @@ def grab(
     return result
 
 
-def write(data, path: str = "./output.parquet"):
+# def wrangle(data: pl.DataFrame) -> pl.DataFrame:
+#     data = data.cast({
+#         "reportperiodstart": pl.date,
+#         "reportperiodend": pl.date,
+#         "dateupdated": pl.date
+#     }).collect()
+
+#     return data
+
+
+def write(data: pl.DataFrame, path: str = "./output.parquet"):
     data.write_parquet(path)
     print(f"writing parquet file to {path}")

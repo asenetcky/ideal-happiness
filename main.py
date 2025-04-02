@@ -3,6 +3,7 @@ import data as d
 
 def main():
     data = d.grab()
+    # data = d.wrangle(data)
     d.write(data)
 
 
