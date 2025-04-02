@@ -2,7 +2,10 @@ import requests
 import polars as pl
 from io import StringIO
 
-def grab(url: str = "https://data.ct.gov/resource/qhtt-czu2.json", page_size: int = 25000):
+
+def grab(
+    url: str = "https://data.ct.gov/resource/qhtt-czu2.json", page_size: int = 25000
+):
     offset = 0
     initial = True
 
@@ -20,14 +23,15 @@ def grab(url: str = "https://data.ct.gov/resource/qhtt-czu2.json", page_size: in
             result = data
             initial = False
         else:
-            result = result.extend(data)   
+            result = result.extend(data)
 
         if rows < page_size:
             break
 
         offset += page_size
-    
+
     return result
+
 
 def write(data, path: str = "./output.parquet"):
     data.write_parquet(path)
